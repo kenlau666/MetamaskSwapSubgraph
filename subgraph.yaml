@@ -1,0 +1,39 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MetamaskSwap
+    network: mainnet
+    source:
+      address: "0x881D40237659C251811CEC9c364ef91dC08D300C"
+      abi: MetamaskSwap
+      startBlock: 11041725
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdapterRemoved
+        - AdapterSet
+        - OwnershipTransferred
+        - Paused
+        - Swap
+        - Unpaused
+      abis:
+        - name: MetamaskSwap
+          file: ./abis/MetamaskSwap.json
+      eventHandlers:
+        - event: AdapterRemoved(indexed string)
+          handler: handleAdapterRemoved
+        - event: AdapterSet(indexed string,indexed address,bytes4,bytes)
+          handler: handleAdapterSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: Swap(indexed string,indexed address)
+          handler: handleSwap
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/metamask-swap.ts

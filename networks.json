@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "MetamaskSwap": {
+      "address": "0x881D40237659C251811CEC9c364ef91dC08D300C",
+      "startBlock": 11041725
+    }
+  }
+}
