@@ -50,3 +50,9 @@ type Unpaused @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type User @entity {
+  address: Bytes!
+  swap: [Swap!]! @derivedFrom(field: "sender")
+  gain: [Token!]! @derivedFrom(field: "creator")
+}
