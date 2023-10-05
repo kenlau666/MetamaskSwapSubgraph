@@ -14,26 +14,12 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AdapterRemoved
-        - AdapterSet
-        - OwnershipTransferred
-        - Paused
         - Swap
-        - Unpaused
+        - User
       abis:
         - name: MetamaskSwap
           file: ./abis/MetamaskSwap.json
       eventHandlers:
-        - event: AdapterRemoved(indexed string)
-          handler: handleAdapterRemoved
-        - event: AdapterSet(indexed string,indexed address,bytes4,bytes)
-          handler: handleAdapterSet
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: Paused(address)
-          handler: handlePaused
         - event: Swap(indexed string,indexed address)
           handler: handleSwap
-        - event: Unpaused(address)
-          handler: handleUnpaused
       file: ./src/metamask-swap.ts
